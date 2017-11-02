@@ -52,3 +52,15 @@ webpack-dev-middleware： 如何在express启动webpack。这里教程没有涉�
 
 这部分功能都是通过npm run 启动脚本执行的。
 
+#hot-module-replacement章节
+
+模块热部署章节，参考https://webpack.js.org/guides/hot-module-replacement/，上面一章主要介绍页面刷新热部署。
+
+webpack.HotModuleReplacementPlugin : webpack自带的模块热部署插件
+webpack.NamedModulesPlugin  ： 监控模块变更插件。
+
+模块热部署模块看后台日志会生效，但是前端不一定会生效，需要在module.hot中特殊处理。react模块热部署要引入react-hot-loader模块配置。
+
+
+
+
