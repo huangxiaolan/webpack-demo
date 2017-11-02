@@ -50,6 +50,8 @@ webpack-dev-server :  不但监控变动，而且还自动刷新浏览器。
 
 webpack-dev-middleware： 如何在express启动webpack。这里教程没有涉及到热部署。
 
+webpack配置output.publicPath: '/'输出文件使用路径。
+
 这部分功能都是通过npm run 启动脚本执行的。
 
 #hot-module-replacement章节
@@ -60,6 +62,31 @@ webpack.HotModuleReplacementPlugin : webpack自带的模块热部署插件
 webpack.NamedModulesPlugin  ： 监控模块变更插件。
 
 模块热部署模块看后台日志会生效，但是前端不一定会生效，需要在module.hot中特殊处理。react模块热部署要引入react-hot-loader模块配置。
+
+#tree shaking
+
+https://webpack.js.org/guides/tree-shaking/
+
+即 import {a} from './index.js'其中的{}的特性。
+
+需要结合uglifyjs-webpack-plugin模块去除多余代码。
+
+对应代码参考下一章节。
+
+#production
+
+参考：https://webpack.js.org/guides/production/。
+
+包括多环境配置--使用webpack-merge
+
+devtool:"source-map" : 生产打包，打包后带有可调式代码。
+//压缩包支持souceMap
+new UglifyJSPlugin({
+    sourceMap: true
+})
+
+配置node的process.env环境变量：
+
 
 
 
