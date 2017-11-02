@@ -8,6 +8,11 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
    plugins: [
      new UglifyJSPlugin({
 		 sourceMap: true
-	 })
+	 }),
+     new webpack.DefinePlugin({
+       'process.env': {
+         'NODE_ENV': JSON.stringify('production')
+       }
+     })
    ]
  });
