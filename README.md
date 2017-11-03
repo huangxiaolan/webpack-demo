@@ -1,4 +1,12 @@
- 
+
+概念辨析：
+webpack的配置中：
+output.path:  打包文件的输出路径
+output.publicPath:  文件被引入的相对地址，即打包后的html文件中是以哪种方式引入图片或者css的。
+
+[hash:8] :  指的是工程的哈希值。
+[chunkhash] :  指的是文件内容的哈希值。
+
 #getting-started章节
 
 基础的webpack使用说明。
@@ -87,7 +95,71 @@ new UglifyJSPlugin({
 
 配置node的process.env环境变量：
 
+#code-splitting
+
+https://webpack.js.org/guides/code-splitting/，分片介绍。
+
+通过entry配置分片。
+
+通过以下插件完成共有组件的打包。
+new webpack.optimize.CommonsChunkPlugin({
+       name: 'common' // Specify the common bundle's name.
+     })
 
 
+#额外
 
+##webpack中的相对路径
 
+webpack.config.js
+{
+    context:process.cwd(), //当前执行node命令时候的文件夹地址 ——工作目录
+    entry: "./index.js"  //相对于context配置的路径
+
+    plugins: [
+     new CleanWebpackPlugin(['dist'],
+        {root: __dirname,   //被清空的文件夹的相对路径，默认是相对于脚本
+        }
+     ),
+     new HtmlWebpackPlugin({
+       title: 'test-css',
+       template:"./template.html", //相对于content
+       filename:"./file.html"    //相对于output.path
+
+     })
+    ]
+
+    output: {
+       path:process.cwd() , //默认是工作目录
+       filename: '[name].js', //相对于output.path
+          
+       publicPath:"/"        //静态资源引用的路径的前缀
+    }
+,}
+   
+##webpack中的css加载相关
+
+css-loader 是处理css文件中的url()等
+
+style-loader 将css插入到页面的style标签
+
+less-loader 是将less文件编译成css
+
+sass-loader 是将sass文件编译成css
+
+postcss-loader 是css兼容性处理
+
+loader的加载顺序是从右往左，从下往上
+
+extract-text-webpack-plugin : 该插件将css抽取为一个文件。
+optimize-css-assets-webpack-plugin : 该插件将抽取的css文件进行压缩
+
+ps： sass-loader需要提前安装node-sass，但是国内安装这个太麻烦了。
+可以考虑使用淘宝镜像安装:
+```
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install --save-dev node-sass
+```
+
+##url-loader
+加载图片，如果图片很小，直接嵌入html代码中。
