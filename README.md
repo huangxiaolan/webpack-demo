@@ -123,7 +123,7 @@ webpack.config.js
      ),
      new HtmlWebpackPlugin({
        title: 'test-css',
-       template:"./template.html", //相对于content
+       template:"./template.html", //相对于context
        filename:"./file.html"    //相对于output.path
 
      })
@@ -154,12 +154,18 @@ loader的加载顺序是从右往左，从下往上
 extract-text-webpack-plugin : 该插件将css抽取为一个文件。
 optimize-css-assets-webpack-plugin : 该插件将抽取的css文件进行压缩
 
-ps： sass-loader需要提前安装node-sass，但是国内安装这个太麻烦了。
-可以考虑使用淘宝镜像安装:
-```
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm install --save-dev node-sass
-```
+ps： sass-loader需要提前安装node-sass.但是国内安装这个太麻烦了。
+
+
+可能由于网络问题下载win32-x64-47_binding.node失败,去https://github.com/sass/node-sass/releases 这里下载需要的版本
+下载后放到某目录下,如我的放到D盘根目录
+1执行命令: set SASS_BINARY_PATH=D:/win32-x64-57_binding.node
+2安装node-sass: cnpm i node-sass
+3安装node-sass成功后继续执行cnpm i下载其他依赖即可
 
 ##url-loader
 加载图片，如果图片很小，直接嵌入html代码中。
+
+#使用淘宝镜像源。
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
