@@ -1,13 +1,17 @@
 
 概念辨析：
+
 webpack的配置中：
+
 output.path:  打包文件的输出路径
+
 output.publicPath:  文件被引入的相对地址，即打包后的html文件中是以哪种方式引入图片或者css的。
 
 [hash:8] :  指的是工程的哈希值。
+
 [chunkhash] :  指的是文件内容的哈希值。
 
-#getting-started章节
+# getting-started章节
 
 基础的webpack使用说明。
 
@@ -23,7 +27,7 @@ npm run build
 
 然后在浏览器中打开dist/index.html页面。
 
-#asset-managerment章节
+# asset-managerment章节
 
 参考链接：https://webpack.js.org/guides/asset-management/
 
@@ -37,7 +41,7 @@ npm run build
 
 对应代码在asset-management文件夹中。查看效果方式类型上一章节。
 
-#output-management章节
+# output-management章节
 
 参考链接：https://webpack.js.org/guides/output-management/
 
@@ -45,7 +49,8 @@ npm run build
 
 啰嗦一点：html-webpack-plugin上有很多配置点，可以参考http://www.cnblogs.com/wonyun/p/6030090.html
 
-#development章节
+# development章节
+
 参考链接https://webpack.js.org/guides/development/
 
 介绍几个开发常用配置和工具：
@@ -62,16 +67,17 @@ webpack配置output.publicPath: '/'输出文件使用路径。
 
 这部分功能都是通过npm run 启动脚本执行的。
 
-#hot-module-replacement章节
+# hot-module-replacement章节
 
 模块热部署章节，参考https://webpack.js.org/guides/hot-module-replacement/，上面一章主要介绍页面刷新热部署。
 
 webpack.HotModuleReplacementPlugin : webpack自带的模块热部署插件
+
 webpack.NamedModulesPlugin  ： 监控模块变更插件。
 
 模块热部署模块看后台日志会生效，但是前端不一定会生效，需要在module.hot中特殊处理。react模块热部署要引入react-hot-loader模块配置。
 
-#tree shaking
+# tree shaking
 
 https://webpack.js.org/guides/tree-shaking/
 
@@ -81,7 +87,7 @@ https://webpack.js.org/guides/tree-shaking/
 
 对应代码参考下一章节。
 
-#production
+# production
 
 参考：https://webpack.js.org/guides/production/。
 
@@ -95,7 +101,7 @@ new UglifyJSPlugin({
 
 配置node的process.env环境变量：
 
-#code-splitting
+# code-splitting
 
 https://webpack.js.org/guides/code-splitting/，分片介绍。
 
@@ -107,10 +113,10 @@ new webpack.optimize.CommonsChunkPlugin({
      })
 
 
-#额外
+# 额外
 
-##webpack中的相对路径
-
+## webpack中的相对路径
+```
 webpack.config.js
 {
     context:process.cwd(), //当前执行node命令时候的文件夹地址 ——工作目录
@@ -136,8 +142,8 @@ webpack.config.js
        publicPath:"/"        //静态资源引用的路径的前缀
     }
 ,}
-   
-##webpack中的css加载相关
+```
+## webpack中的css加载相关
 
 css-loader 是处理css文件中的url()等
 
@@ -152,20 +158,28 @@ postcss-loader 是css兼容性处理
 loader的加载顺序是从右往左，从下往上
 
 extract-text-webpack-plugin : 该插件将css抽取为一个文件。
+
 optimize-css-assets-webpack-plugin : 该插件将抽取的css文件进行压缩
 
 ps： sass-loader需要提前安装node-sass.但是国内安装这个太麻烦了。
 
 
-可能由于网络问题下载win32-x64-47_binding.node失败,去https://github.com/sass/node-sass/releases 这里下载需要的版本
+可能由于网络问题下载win32-x64-47_binding.node失败,去https://github.com/sass/node-sass/releases 
+这里下载需要的版本
+
 下载后放到某目录下,如我的放到D盘根目录
+
 1执行命令: set SASS_BINARY_PATH=D:/win32-x64-57_binding.node
+
 2安装node-sass: cnpm i node-sass
+
 3安装node-sass成功后继续执行cnpm i下载其他依赖即可
 
-##url-loader
+## url-loader
+
 加载图片，如果图片很小，直接嵌入html代码中。
 
-#使用淘宝镜像源。
+## 使用淘宝镜像源。
+
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 
